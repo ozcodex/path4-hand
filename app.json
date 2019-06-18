@@ -24,10 +24,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription":""
       }
+    },
+    "android":{
+      "permissions": [
+        "ACCESS_FINE_LOCATION"
+      ]
     },
     "description": ""
   }
