@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "path4",
-    "slug": "hand",
+    "slug": "path4-hand",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
@@ -25,6 +25,10 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription":""
+      }
+    },
+    "description": ""
   }
 }
