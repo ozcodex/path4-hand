@@ -17,7 +17,6 @@ static navigationOptions = { header: null }
   render() {
     const navigate = this.props.navigation.navigate;
     var delay = this.props.navigation.getParam('delay', 0)
-    delay = Math.ceil(delay*60/360)
     return (
       <View style={styles.container}>
         <Image

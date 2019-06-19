@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import { View, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import Constants from 'expo-constants';
 
 const border = 50;
 
@@ -8,6 +9,7 @@ export default class Welcome extends Component {
 static navigationOptions = { header: null } 
 
   render() {
+    console.log(Constants.deviceId)
     const navigate = this.props.navigation.navigate;
     return (
       <View style={styles.container}>
