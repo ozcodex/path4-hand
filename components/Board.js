@@ -5,7 +5,7 @@ import CircleSlider from './CircleSlider';
 
 const border = 50;
 
-export default class Delay extends Component {
+export default class Score extends Component {
 
 static navigationOptions = { header: null } 
 
@@ -13,12 +13,10 @@ static navigationOptions = { header: null }
     super(props);
   }
 
-  changeValue(x){
-    return Math.ceil(x*60/360)
-  }
-
   render() {
     const navigate = this.props.navigation.navigate;
+    var delay = this.props.navigation.getParam('delay', 0)
+    delay = Math.ceil(delay*60/360)
     return (
       <View style={styles.container}>
         <Image
@@ -26,14 +24,12 @@ static navigationOptions = { header: null }
           width={Dimensions.get('window').width - border * 4}
           source={require('../assets/dragon.png')}
         />
-        <Text style={styles.text}>How long is your Delay?</Text>
-          <CircleSlider
-            ref="delayedMinutes"
-            value={90}
-            onValueChange={ this.changeValue }
-          /> 
-        <TouchableOpacity style={styles.button} onPress={() => navigate('Score', {delay: this.refs.delayedMinutes.state.angle})}>
-          <Text>Feed your MVG dragon!</Text>
+        <Text style={styles.text}>you collected {delay} min to feed your dragon!</Text>
+        <Text style={styles.text}>Your total dragon score: </Text>
+        <Text style={styles.bold}> { 78 + delay} min </Text>
+        <Text style={styles.text}> ({42 - delay} min. left for level up your dragon) </Text>
+        <TouchableOpacity style={styles.button} onPress={() => navigate('Delay')}>
+          <Text>See which dragons are waiting with you</Text>
         </TouchableOpacity>
       </View>
     );
