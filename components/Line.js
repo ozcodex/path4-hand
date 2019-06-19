@@ -7,6 +7,13 @@ export default class Line extends Component {
 
 static navigationOptions = { header: null } 
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: ''
+    }
+  }
+  
   render() {
     const navigate = this.props.navigation.navigate;
     return (
@@ -17,7 +24,7 @@ static navigationOptions = { header: null }
           placeholder="Type in here"
           onChangeText={(text) => this.setState({text})}
         />
-        <TouchableOpacity style={styles.button} onPress={() => navigate('Delay')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigate('Delay',{line:this.state.text})}>
           <Text>Go On!</Text>
         </TouchableOpacity>
       </View>

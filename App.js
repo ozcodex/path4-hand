@@ -6,6 +6,8 @@ import Line from './components/Line'
 import Delay from './components/Delay'
 import Score from './components/Score'
 import Board from './components/Board'
+import Info from './components/Info'
+import Main from './components/Main'
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 const MainNavigator = createStackNavigator(
@@ -16,6 +18,8 @@ const MainNavigator = createStackNavigator(
     Delay: {screen: Delay},
     Score: {screen: Score},
     Board: {screen: Board},
+    Info: {screen: Info},
+    Main: {screen: Main},
   },
   {
     initialRouteName: "Home"

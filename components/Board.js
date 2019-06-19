@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import { View, Text, Dimensions, StyleSheet, FlatList, TextInput } from 'react-native';
+import Nav from './Nav';
 
 const border = 50;
 
@@ -33,6 +34,7 @@ static navigationOptions = { header: null }
               </View>
             }
         />
+        <Nav navigation={this.props.navigation} />
       </View>
     );
   }

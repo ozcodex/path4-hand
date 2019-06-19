@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import Image from 'react-native-scalable-image';
 import CircleSlider from './CircleSlider';
+import Nav from './Nav';
 
 const border = 50;
 
@@ -11,14 +12,41 @@ static navigationOptions = { header: null }
 
   constructor(props) {
     super(props);
+    this.saveAndContinue = this.saveAndContinue.bind(this);
   }
 
   changeValue(x){
     return Math.ceil(x*60/360)
   }
 
-  render() {
+  saveAndContinue(){
     const navigate = this.props.navigation.navigate;
+    let angle = this.refs.delayedMinutes.state.angle
+    let line = this.props.navigation.getParam('line', undefined)
+    let delay = Math.ceil(angle*60/360)
+    var data = {
+      "delayTime": delay,
+      "stationName": line,
+      "direction": "North!"
+    }
+    fetch('https://mvp-brain-dot-project-path4.appspot.com/api/reportdelay',{
+      method: 'POST',
+      body: JSON.stringify(data), 
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson)
+      navigate('Score',{delay:delay})
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  render() {
     return (
       <View style={styles.container}>
         <Image
@@ -32,9 +60,10 @@ static navigationOptions = { header: null }
             value={90}
             onValueChange={ this.changeValue }
           /> 
-        <TouchableOpacity style={styles.button} onPress={() => navigate('Score', {delay: this.refs.delayedMinutes.state.angle})}>
+        <TouchableOpacity style={styles.button} onPress={this.saveAndContinue}>
           <Text>Feed your MVG dragon!</Text>
         </TouchableOpacity>
+        <Nav navigation={this.props.navigation} />
       </View>
     );
   }
