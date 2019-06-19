@@ -23,13 +23,15 @@ static navigationOptions = { header: null }
             source={require('../assets/home.png')}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigate('Info')}>
-          <Image
-            style={styles.image}
-            height={80}
-            source={require('../assets/mini-dragon.png')}
-          />
-        </TouchableOpacity>
+        { !this.props.hideInfo &&
+          <TouchableOpacity style={styles.button} onPress={() => navigate('Info')}>
+            <Image
+              style={styles.image}
+              height={80}
+              source={require('../assets/mini-dragon.png')}
+            />
+          </TouchableOpacity>
+        }
       </View>
     );
   }

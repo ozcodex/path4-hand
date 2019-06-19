@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import Image from 'react-native-scalable-image';
+import Nav from './Nav';
 
 const border = 50;
 
@@ -30,6 +31,7 @@ static navigationOptions = { header: null }
         <TouchableOpacity style={styles.button} onPress={() => Alert.alert('TBD')}>
           <Text>Redem your points here</Text>
         </TouchableOpacity>
+        <Nav navigation={this.props.navigation} hideInfo={true}/>
       </View>
     );
   }
