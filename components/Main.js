@@ -1,12 +1,10 @@
 import React,{ Component } from 'react';
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import Image from 'react-native-scalable-image';
-import CircleSlider from './CircleSlider';
-import Nav from './Nav';
 
 const border = 50;
 
-export default class Score extends Component {
+export default class Main extends Component {
 
 static navigationOptions = { header: null } 
 
@@ -20,19 +18,13 @@ static navigationOptions = { header: null }
     delay = Math.ceil(delay*60/360)
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.image} 
-          width={Dimensions.get('window').width - border * 4}
-          source={require('../assets/dragon.png')}
-        />
-        <Text style={styles.text}>you collected {delay} min to feed your dragon!</Text>
-        <Text style={styles.text}>Your total dragon score: </Text>
-        <Text style={styles.bold}> { 78 + delay} min </Text>
-        <Text style={styles.text}> ({42 - delay} min. left for level up your dragon) </Text>
-        <TouchableOpacity style={styles.button} onPress={() => navigate('Board')}>
-          <Text>See which dragons are waiting with you</Text>
+        <TouchableOpacity style={styles.button} onPress={() => navigate('Line')}>
+          <Text style={styles.text}>Are you currently facing a delay with public transport?</Text>
         </TouchableOpacity>
-        <Nav navigation={this.props.navigation} />
+          <Text style={styles.text}>or</Text>
+        <TouchableOpacity style={styles.button} onPress={() => navigate('Board')}>
+          <Text style={styles.text}>Do you want to see who is waiting with you?</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -44,9 +36,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     flexDirection:'column',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    paddingHorizontal: border,
+    padding: border,
   },
   text: {
     //flex: 1,
@@ -61,7 +53,6 @@ const styles = StyleSheet.create({
   },
   button:{
     //flex:1,
-    backgroundColor: '#81FFC9',
   },
   bold: {
     //flex: 2,

@@ -1,12 +1,10 @@
 import React,{ Component } from 'react';
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import Image from 'react-native-scalable-image';
-import CircleSlider from './CircleSlider';
-import Nav from './Nav';
 
 const border = 50;
 
-export default class Score extends Component {
+export default class Info extends Component {
 
 static navigationOptions = { header: null } 
 
@@ -25,14 +23,13 @@ static navigationOptions = { header: null }
           width={Dimensions.get('window').width - border * 4}
           source={require('../assets/dragon.png')}
         />
-        <Text style={styles.text}>you collected {delay} min to feed your dragon!</Text>
-        <Text style={styles.text}>Your total dragon score: </Text>
-        <Text style={styles.bold}> { 78 + delay} min </Text>
-        <Text style={styles.text}> ({42 - delay} min. left for level up your dragon) </Text>
-        <TouchableOpacity style={styles.button} onPress={() => navigate('Board')}>
-          <Text>See which dragons are waiting with you</Text>
+        <Text style={styles.bold}>Level 2</Text>
+        <Text style={styles.text}>97 min collected </Text>
+        <Text style={styles.text}> (23 min. left to reach) </Text>
+        <Text style={styles.text}> Place 1.033 in Munich Ranklist </Text>
+        <TouchableOpacity style={styles.button} onPress={() => Alert.alert('TBD')}>
+          <Text>Redem your points here</Text>
         </TouchableOpacity>
-        <Nav navigation={this.props.navigation} />
       </View>
     );
   }

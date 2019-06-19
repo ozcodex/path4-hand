@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import Image from 'react-native-scalable-image';
 import CircleSlider from './CircleSlider';
+import Nav from './Nav';
 
 const border = 50;
 
@@ -35,6 +36,7 @@ static navigationOptions = { header: null }
         <TouchableOpacity style={styles.button} onPress={() => navigate('Score', {delay: this.refs.delayedMinutes.state.angle})}>
           <Text>Feed your MVG dragon!</Text>
         </TouchableOpacity>
+        <Nav navigation={this.props.navigation} />
       </View>
     );
   }
