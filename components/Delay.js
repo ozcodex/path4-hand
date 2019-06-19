@@ -3,7 +3,7 @@ import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput } from 
 
 const border = 50;
 
-export default class Line extends Component {
+export default class Delay extends Component {
 
 static navigationOptions = { header: null } 
 
