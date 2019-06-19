@@ -1,7 +1,5 @@
 import React,{ Component } from 'react';
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-import Image from 'react-native-scalable-image';
-import CircleSlider from './CircleSlider';
+import { View, Text, Dimensions, StyleSheet, FlatList, TextInput } from 'react-native';
 
 const border = 50;
 
@@ -9,28 +7,32 @@ export default class Score extends Component {
 
 static navigationOptions = { header: null } 
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const navigate = this.props.navigation.navigate;
-    var delay = this.props.navigation.getParam('delay', 0)
-    delay = Math.ceil(delay*60/360)
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.image} 
-          width={Dimensions.get('window').width - border * 4}
-          source={require('../assets/dragon.png')}
+        <Text style={styles.title}>Your fellow commuters:</Text>
+        <FlatList
+          data={[
+            {key:'1', name: 'Faizaninho1',desc:'10 min collected at U8',time: '3 min. ago', level:5 },
+            {key:'2', name: 'Henriko3',desc:'3 min collected at U8',time: '7 min. ago', level:2 },
+            {key:'3', name: 'Farnazi09',desc:'12 min collected at U8',time: '8 min. ago', level:1 },
+            {key:'4', name: 'Lulululu',desc:'2 min collected at U8',time: '10 min. ago', level:12 },
+          ]}
+          renderItem={
+            ({item}) => 
+              <View style={styles.item}>
+                <View style={styles.part}>
+                  <Text style={styles.text}>{item.name}</Text>
+                  <Text style={styles.text}>{item.time}</Text>
+                </View>
+                <View style={styles.part}>
+                  <Text style={styles.bold}>Dragon Lvl. {item.level}</Text>
+                  <Text style={styles.bold}>{item.desc}</Text>
+                </View>
+              </View>
+            }
         />
-        <Text style={styles.text}>you collected {delay} min to feed your dragon!</Text>
-        <Text style={styles.text}>Your total dragon score: </Text>
-        <Text style={styles.bold}> { 78 + delay} min </Text>
-        <Text style={styles.text}> ({42 - delay} min. left for level up your dragon) </Text>
-        <TouchableOpacity style={styles.button} onPress={() => navigate('Delay')}>
-          <Text>See which dragons are waiting with you</Text>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -44,11 +46,19 @@ const styles = StyleSheet.create({
     flexDirection:'column',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: border,
+    padding: border,
+  },
+  part:{
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  item:{
+    width: Dimensions.get('window').width - border * 2,
+    flexDirection: 'column',
   },
   text: {
     //flex: 1,
-    fontSize: 20,
+    fontSize: 16,
     textAlign: 'center',
   },
   central:{
@@ -63,8 +73,15 @@ const styles = StyleSheet.create({
   },
   bold: {
     //flex: 2,
-    fontSize: 20,
+    fontSize: 14,
     textAlign: 'center',
     fontWeight: 'bold'
+  },
+  title: {
+    //flex: 2,
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    paddingBottom: border
   },
 });
