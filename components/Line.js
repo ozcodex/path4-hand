@@ -3,7 +3,7 @@ import { View, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-nati
 
 const border = 50;
 
-export default class Welcome extends Component {
+export default class Line extends Component {
 
 static navigationOptions = { header: null } 
 
