@@ -32,7 +32,8 @@
     "android":{
       "permissions": [
         "ACCESS_FINE_LOCATION"
-      ]
+      ],
+      "package": "com.ozcodex.path4"
     },
     "description": ""
   }
