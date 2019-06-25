@@ -13,11 +13,11 @@ static navigationOptions = { header: null }
   constructor(props) {
     super(props);
     let dim = Dimensions.get('window').width
-    let percent = 0.6
-    let finalsizeY = Math.ceil(dim - border * 4)
+    let percent = 0.4
+    let finalsizeY = Math.floor(dim - border * 3)
     let initialsizeY = Math.floor(finalsizeY * percent)
     this.finalsizeY = finalsizeY
-    this.finalsizeX = Math.ceil(finalsizeY * 0.86)
+    this.finalsizeX = Math.floor(finalsizeY * 0.86)
     let initialsizeX = Math.floor(initialsizeY * 0.86)
     this.state = {
       fadeAnim: new Animated.ValueXY({x:initialsizeX,y:initialsizeY})  // Initial value for size
@@ -41,13 +41,20 @@ static navigationOptions = { header: null }
     var delay = this.props.navigation.getParam('delay', 0)
     return (
       <View style={styles.container}>
-        <Animated.Image
-          style={{
-            width: fadeAnim.x,
-            height: fadeAnim.y
-          }} 
-          source={require('../assets/dragon.png')}
-        />
+        <View style={{
+          width: this.finalsizeX,
+          height: this.finalsizeY,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+          <Animated.Image
+            style={{
+              width: fadeAnim.x,
+              height: fadeAnim.y
+            }} 
+            source={require('../assets/dragon.png')}
+          />
+        </View>
         <Text style={styles.text}>you collected {delay} min to feed your dragon!</Text>
         <Text style={styles.text}>Your total dragon score: </Text>
         <Text style={styles.bold}> { 78 + delay} min </Text>
