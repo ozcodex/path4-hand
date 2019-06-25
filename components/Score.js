@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-import Image from 'react-native-scalable-image';
+import {Animated, View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native';
+//import Image from 'react-native-scalable-image';
 import CircleSlider from './CircleSlider';
 import Nav from './Nav';
 
@@ -12,16 +12,40 @@ static navigationOptions = { header: null }
 
   constructor(props) {
     super(props);
+    let dim = Dimensions.get('window').width
+    let percent = 0.6
+    let finalsizeY = Math.ceil(dim - border * 4)
+    let initialsizeY = Math.floor(finalsizeY * percent)
+    this.finalsizeY = finalsizeY
+    this.finalsizeX = Math.ceil(finalsizeY * 0.86)
+    let initialsizeX = Math.floor(initialsizeY * 0.86)
+    this.state = {
+      fadeAnim: new Animated.ValueXY({x:initialsizeX,y:initialsizeY})  // Initial value for size
+    }
+  }
+
+  componentDidMount() {
+    Animated.timing(                  // Animate over time
+      this.state.fadeAnim,            // The animated value to drive
+      {
+        toValue: {x:this.finalsizeX,y:this.finalsizeY},      // Animate to final size
+        duration: 5000,              // Make it take a while
+      }
+    ).start();                        // Starts the animation
   }
 
   render() {
+    console.log(this.state)
+    let fadeAnim = this.state.fadeAnim
     const navigate = this.props.navigation.navigate;
     var delay = this.props.navigation.getParam('delay', 0)
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.image} 
-          width={Dimensions.get('window').width - border * 4}
+        <Animated.Image
+          style={{
+            width: fadeAnim.x,
+            height: fadeAnim.y
+          }} 
           source={require('../assets/dragon.png')}
         />
         <Text style={styles.text}>you collected {delay} min to feed your dragon!</Text>
