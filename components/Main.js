@@ -1,8 +1,7 @@
 import React,{ Component } from 'react';
 import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import Image from 'react-native-scalable-image';
-
-const border = 50;
+import {border, styles} from '../styles'
 
 export default class Main extends Component {
 
@@ -30,34 +29,3 @@ static navigationOptions = { header: null }
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    flexDirection:'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    padding: border,
-  },
-  text: {
-    //flex: 1,
-    fontSize: 20,
-    textAlign: 'center',
-  },
-  central:{
-    //flex: 2
-  },
-  image: {
-    
-  },
-  button:{
-    //flex:1,
-  },
-  bold: {
-    //flex: 2,
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold'
-  },
-});

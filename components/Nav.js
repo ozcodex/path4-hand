@@ -1,8 +1,7 @@
 import React,{ Component } from 'react';
 import { View, Text, Dimensions, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import Image from 'react-native-scalable-image';
-
-const border = 50;
+import {border, styles} from '../styles'
 
 export default class Nav extends Component {
 
@@ -15,8 +14,8 @@ static navigationOptions = { header: null }
   render() {
     const navigate = this.props.navigation.navigate;
     return (
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={() => navigate('Main')}>
+      <View style={styles.navContainer}>
+        <TouchableOpacity style={styles.navButton} onPress={() => navigate('Main')}>
           <Image
             style={styles.image}
             height={80}
@@ -24,7 +23,7 @@ static navigationOptions = { header: null }
           />
         </TouchableOpacity>
         { !this.props.hideInfo &&
-          <TouchableOpacity style={styles.button} onPress={() => navigate('Info')}>
+          <TouchableOpacity style={styles.navButton} onPress={() => navigate('Info')}>
             <Image
               style={styles.image}
               height={80}
@@ -37,16 +36,3 @@ static navigationOptions = { header: null }
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex:0,
-    flexDirection:'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    paddingTop: 20,
-    width: Dimensions.get('window').width - border * 2,
-  },
-  button:{
-    //flex:1,
-  },
-});

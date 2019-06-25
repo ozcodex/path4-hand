@@ -1,8 +1,7 @@
 import React,{ Component } from 'react';
 import { View, Text, Dimensions, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import Image from 'react-native-scalable-image';
-
-const border = 50;
+import {border, styles} from '../styles'
 
 export default class Home extends Component {
 
@@ -28,21 +27,3 @@ static navigationOptions = { header: null }
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    flexDirection:'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: border,
-  },
-  image: {
-    
-  },
-  text: {
-    fontSize: 20,
-    textAlign: 'center',
-  }
-});

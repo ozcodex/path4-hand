@@ -1,8 +1,7 @@
 import React,{ Component } from 'react';
 import { View, Text, Dimensions, StyleSheet, FlatList, TextInput } from 'react-native';
 import Nav from './Nav';
-
-const border = 50;
+import {border, styles} from '../styles'
 
 export default class Score extends Component {
 
@@ -24,12 +23,12 @@ static navigationOptions = { header: null }
             ({item}) => 
               <View style={styles.item}>
                 <View style={styles.part}>
-                  <Text style={styles.text}>{item.name}</Text>
-                  <Text style={styles.text}>{item.time}</Text>
+                  <Text style={styles.textSmall}>{item.name}</Text>
+                  <Text style={styles.textSmall}>{item.time}</Text>
                 </View>
                 <View style={styles.part}>
-                  <Text style={styles.bold}>Dragon Lvl. {item.level}</Text>
-                  <Text style={styles.bold}>{item.desc}</Text>
+                  <Text style={styles.boldSmall}>Dragon Lvl. {item.level}</Text>
+                  <Text style={styles.boldSmall}>{item.desc}</Text>
                 </View>
               </View>
             }
@@ -40,50 +39,3 @@ static navigationOptions = { header: null }
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    flexDirection:'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: border,
-  },
-  part:{
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  item:{
-    width: Dimensions.get('window').width - border * 2,
-    flexDirection: 'column',
-  },
-  text: {
-    //flex: 1,
-    fontSize: 16,
-    textAlign: 'center',
-  },
-  central:{
-    //flex: 2
-  },
-  image: {
-    
-  },
-  button:{
-    //flex:1,
-    backgroundColor: '#81FFC9',
-  },
-  bold: {
-    //flex: 2,
-    fontSize: 14,
-    textAlign: 'center',
-    fontWeight: 'bold'
-  },
-  title: {
-    //flex: 2,
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    paddingBottom: border
-  },
-});
