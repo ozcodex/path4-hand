@@ -58,13 +58,16 @@ export default class CircleSlider extends Component {
     }
   }
 
+  componentDidUpdate(){
+    this.props.onChange()
+  }
+
   render() {
     let width = (this.props.dialRadius + this.props.btnRadius)*2;
     let bR = this.props.btnRadius;
     let dR = this.props.dialRadius;
     let startCoord = this.polarToCartesian(0);
     let endCoord = this.polarToCartesian(this.state.angle);
-
     return (
       <Svg
         width={width}
@@ -115,4 +118,5 @@ CircleSlider.defaultProps = {
   xCenter: Dimensions.get('window').width/2,
   yCenter: Dimensions.get('window').height/2,
   onValueChange: x => x,
+  onChange: () => {},
 }
