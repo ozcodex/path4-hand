@@ -18,7 +18,7 @@ static navigationOptions = { header: null }
           <Text>Path4 is helping you leave out the stress and find out who is travelling with you while collecting delay minutes.</Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={() => navigate('Main')}>
-          <Text>Start to grow your MVG-dragon!</Text>
+          <Text style={styles.buttonText}>Start to grow your MVG-dragon!</Text>
         </TouchableOpacity>
       </View>
     );

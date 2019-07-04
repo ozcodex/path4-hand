@@ -53,13 +53,15 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     width: Dimensions.get('window').width - border * 2,
   },
-  button:{
+  buttonText:{
     //flex:1,
+    color: '#fff',
+    fontWeight: 'bold',
   },
   button:{
     //flex:1,
     padding: Math.ceil(border/3),
-    backgroundColor: '#81FFC9',
+    backgroundColor: '#841584',
     margin: Math.ceil(border/4)
   },
   part:{
