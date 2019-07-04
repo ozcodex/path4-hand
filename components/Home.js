@@ -24,6 +24,7 @@ export default class Home extends Component {
         itemWidth={iw}
         style={{width}}
         data={data}
+        useVelocityForIndex={false}
         contentOffset={co}
         onIndexChange={index =>
           this.setState(() => ({ currentIndex: index }))
