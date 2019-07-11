@@ -185,7 +185,10 @@ export default class Welcome extends Component {
       if(this.state.move == 0){
         this.move(m)
       }
-    } 
+    }
+    let p = this.state.enemymove != 0 //enemy moved?
+    let q = this.state.move != 0  //i moved?
+    var opmove = !p || q ? moves[this.state.enemymove] : '???'
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
@@ -204,7 +207,7 @@ export default class Welcome extends Component {
             <Text style={sty3}>Scissors</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.text}>Opponent Move: {moves[this.state.enemymove]}</Text>
+        <Text style={styles.text}>Opponent Move: {opmove}</Text>
         <Text style={styles.text}>Result: {results[this.state.result]}</Text>
       </View>
     );
