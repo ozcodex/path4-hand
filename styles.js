@@ -58,10 +58,21 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
+  buttoffText:{
+    //flex:1,
+    color: '#000',
+    fontWeight: 'bold',
+  },
   button:{
     //flex:1,
     padding: Math.ceil(border/3),
     backgroundColor: '#841584',
+    margin: Math.ceil(border/4)
+  },
+  buttoff:{
+    //flex:1,
+    padding: Math.ceil(border/3),
+    backgroundColor: '#848484',
     margin: Math.ceil(border/4)
   },
   part:{
