@@ -8,6 +8,7 @@ import Score from './components/Score'
 import Board from './components/Board'
 import Info from './components/Info'
 import Main from './components/Main'
+import North from './components/GameNorth'
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 const MainNavigator = createStackNavigator(
@@ -20,6 +21,7 @@ const MainNavigator = createStackNavigator(
     Board: {screen: Board},
     Info: {screen: Info},
     Main: {screen: Main},
+    North: {screen: North},
   },
   {
     initialRouteName: "Home"
