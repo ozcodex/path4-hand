@@ -34,6 +34,7 @@ static navigationOptions = { header: null }
     }
     this.state = { 
       line: 'false',
+      station: station
     };
     YellowBox.ignoreWarnings(['Setting a timer']);
     //Ignoring it is not the best approach, but if you're using Firebase Realtime Database.
@@ -59,7 +60,7 @@ static navigationOptions = { header: null }
             )) : <Picker.Item label='Loading...' key='undef' value='false' />}
           </Picker>
         </View>
-        <TouchableOpacity style={styles.button} onPress={()=>{navigate('ReportDirection',{line: this.state.line})}}>
+        <TouchableOpacity style={styles.button} onPress={()=>{navigate('ReportDirection',{line: this.state.line, station: this.state.station})}}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>

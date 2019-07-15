@@ -18,7 +18,8 @@ static navigationOptions = { header: null }
     const navigation = this.props.navigation;
     //get the name of the line
     const line = navigation.getParam('line')
-    if (!line) {
+    const station = navigation.getParam('station')
+    if (!line || !station) {
       //if there are no line redirect to the begining
       navigation.navigate('ReportStation')
     }else{
@@ -34,7 +35,8 @@ static navigationOptions = { header: null }
       );
     }
     this.state = {
-      line: 'line',
+      line: line,
+      station: station,
       direction: 'false',
     };
     YellowBox.ignoreWarnings(['Setting a timer']);
@@ -61,7 +63,7 @@ static navigationOptions = { header: null }
             )) : <Picker.Item label='Loading...' key='undef' value='false' />}
           </Picker>
         </View>
-        <TouchableOpacity style={styles.button} onPress={()=>{navigate('ReportDelay',{line: this.state.line,direction: this.state.direction})}}>
+        <TouchableOpacity style={styles.button} onPress={()=>{navigate('ReportDelay',{line: this.state.line,direction: this.state.direction,station: this.state.station})}}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>
