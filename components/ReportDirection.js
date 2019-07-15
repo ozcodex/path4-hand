@@ -9,31 +9,33 @@ const firebase = require('../firebase.js');
 const db = firebase.db;
 const files = firebase.files;
 
-export default class ReportLine extends Component {
+export default class ReportDirection extends Component {
 
 static navigationOptions = { header: null } 
 
   constructor(props) {
     super(props);
     const navigation = this.props.navigation;
-    //get the name of the station
-    const station = navigation.getParam('station')
-    if (!station) {
-      //if there are no station redirect back
+    //get the name of the line
+    const line = navigation.getParam('line')
+    if (!line) {
+      //if there are no line redirect to the begining
       navigation.navigate('ReportStation')
     }else{
-      db.collection('stations').where('name', '==', station).get().then(
+      db.collection('lines').where('name', '==', line).get().then(
         snapshot => {
-          var lines = snapshot.docs[0].data().lines
+          var directions = snapshot.docs[0].data().directions
+          console.log(line, directions)
           this.setState({
-            lines: lines,
-            line: lines[0]
+            directions: directions,
+            direction: directions[0]
           })
         }
       );
     }
-    this.state = { 
-      line: 'false',
+    this.state = {
+      line: 'line',
+      direction: 'false',
     };
     YellowBox.ignoreWarnings(['Setting a timer']);
     //Ignoring it is not the best approach, but if you're using Firebase Realtime Database.
@@ -45,21 +47,21 @@ static navigationOptions = { header: null }
     const navigate = this.props.navigation.navigate;
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Which line are you using?</Text>
+        <Text style={styles.text}>In which diretion are you driving?</Text>
         <View style={{borderColor: 'gray', borderWidth: 1}}>
           <Picker
-            selectedValue={this.state.line}
+            selectedValue={this.state.direction}
             style={styles.picker}
             mode='dropdown'
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({line: itemValue})
+            onValueChange={(itemValue) =>
+              this.setState({direction: itemValue})
             }>
-            {this.state.lines? this.state.lines.map((item) => (
-              <Picker.Item label={item.toUpperCase()} key={item} value={item} />
+            {this.state.directions? this.state.directions.map((item) => (
+              <Picker.Item label={item} key={item} value={item} />
             )) : <Picker.Item label='Loading...' key='undef' value='false' />}
           </Picker>
         </View>
-        <TouchableOpacity style={styles.button} onPress={()=>{navigate('ReportDirection',{line: this.state.line})}}>
+        <TouchableOpacity style={styles.button} onPress={()=>{navigate('ReportDelay',{line: this.state.line,direction: this.state.direction})}}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>

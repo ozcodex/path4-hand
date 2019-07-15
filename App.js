@@ -12,6 +12,7 @@ import North from './components/GameNorth'
 import Intro from './components/Intro'
 import ReportStation from './components/ReportStation'
 import ReportLine from './components/ReportLine'
+import ReportDirection from './components/ReportDirection'
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 const MainNavigator = createStackNavigator(
@@ -28,6 +29,7 @@ const MainNavigator = createStackNavigator(
     North: {screen: North},
     ReportStation: {screen: ReportStation},
     ReportLine: {screen: ReportLine},
+    ReportDirection: {screen: ReportDirection},
   },
   {
     initialRouteName: "Home"
