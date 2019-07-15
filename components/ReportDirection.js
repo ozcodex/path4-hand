@@ -26,7 +26,6 @@ static navigationOptions = { header: null }
       db.collection('lines').where('name', '==', line).get().then(
         snapshot => {
           var directions = snapshot.docs[0].data().directions
-          console.log(line, directions)
           this.setState({
             directions: directions,
             direction: directions[0]

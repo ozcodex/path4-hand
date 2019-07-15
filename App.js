@@ -13,6 +13,7 @@ import Intro from './components/Intro'
 import ReportStation from './components/ReportStation'
 import ReportLine from './components/ReportLine'
 import ReportDirection from './components/ReportDirection'
+import ReportDelay from './components/ReportDelay'
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 const MainNavigator = createStackNavigator(
@@ -30,6 +31,7 @@ const MainNavigator = createStackNavigator(
     ReportStation: {screen: ReportStation},
     ReportLine: {screen: ReportLine},
     ReportDirection: {screen: ReportDirection},
+    ReportDelay: {screen: ReportDelay},
   },
   {
     initialRouteName: "Home"
