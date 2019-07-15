@@ -33,9 +33,6 @@ export default class Welcome extends Component {
           <Text style={styles.buttonText}>Find My Coords?</Text>
         </TouchableOpacity>
         <Text>Location: {this.state.location}</Text>
-        <TouchableOpacity style ={styles.button} onPress={() => navigate('North')}>
-          <Text style={styles.buttonText}>Play a Game!</Text>
-        </TouchableOpacity>
       </View>
     );
   }

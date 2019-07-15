@@ -50,6 +50,7 @@ export default class Welcome extends Component {
   }
 
   componentWillUnmount() {
+    this.unsuscribe(this.state.gamecode)
     this.disconnect()
   }
 
@@ -70,6 +71,8 @@ export default class Welcome extends Component {
   }
 
   restart(){      
+    //remove listeners of current game
+    this.unsuscribe(this.state.gamecode)
     //reset the state
     this.setState({
       move: 0,
@@ -157,12 +160,16 @@ export default class Welcome extends Component {
     });
   }
 
+  //function to remove listeners
+  unsuscribe(gamecode){
+    db.collection('games').where('gamecode', '==', gamecode).onSnapshot(() => {});
+  }
+  //function to listen to changes no db
   //this function is the one who triger events
   //when there are changes on the game in db
   watchGame(gamecode){
-    var colectionRef = db.collection('games');
     //search for the game
-    var queryRef = colectionRef.where('gamecode', '==', gamecode);
+    var queryRef = db.collection('games').where('gamecode', '==', gamecode);
     var observer = queryRef.onSnapshot(snap => {
       let data = snap.docs[0].data();
       let gameRef = snap.docs[0].ref

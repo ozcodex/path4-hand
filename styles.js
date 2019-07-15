@@ -89,5 +89,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingVertical: border
   },
+  input : {
+    height: 50,
+    padding: 10, 
+    width: Dimensions.get('window').width - border * 2,
+    borderColor: 'gray',
+    borderWidth: 1
+  },
+  picker : {
+    height: 50,
+    //padding: 10,
+    width: Dimensions.get('window').width - border * 4,
+  },
 })
 
