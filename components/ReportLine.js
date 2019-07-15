@@ -4,6 +4,7 @@ import Image from 'react-native-scalable-image';
 import CircleSlider from './CircleSlider';
 import Nav from './Nav';
 import {border, styles} from '../styles'
+import { YellowBox } from 'react-native';
 const firebase = require('../firebase.js');
 const db = firebase.db;
 const files = firebase.files;
@@ -23,15 +24,20 @@ static navigationOptions = { header: null }
     }else{
       db.collection('stations').where('name', '==', station).get().then(
         snapshot => {
-          var lines = snapshot.docs[0]
-          console.log(lines)
+          var lines = snapshot.docs[0].data().lines
+          this.setState({
+            lines: lines
+          })
         }
       );
     }
     this.state = { 
       line: 's1',
-      lines: ['a','b']
     };
+    YellowBox.ignoreWarnings(['Setting a timer']);
+    //Ignoring it is not the best approach, but if you're using Firebase Realtime Database.
+    //They are looking into solving this issue with their library
+    // https://github.com/firebase/firebase-js-sdk/issues/97
   }
 
   render() {
@@ -47,9 +53,9 @@ static navigationOptions = { header: null }
             onValueChange={(itemValue, itemIndex) =>
               this.setState({line: itemValue})
             }>
-            {this.state.lines.map((item) => (
+            {this.state.lines? this.state.lines.map((item) => (
               <Picker.Item label={item.toUpperCase()} key={item} value={item} />
-            ))}
+            )) : <Picker.Item label='Loading...' key='undef' value='false' />}
           </Picker>
         </View>
         <TouchableOpacity style={styles.button} onPress={()=>{navigate('ReportDirection',{line: this.state.text})}}>
