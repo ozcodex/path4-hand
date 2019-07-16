@@ -6,7 +6,7 @@ import Nav from './Nav';
 import {border, styles} from '../styles'
 import { YellowBox } from 'react-native';
 import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps'
+import { Marker,Callout } from 'react-native-maps'
 const firebase = require('../firebase.js');
 const db = firebase.db;
 const files = firebase.files;
@@ -19,10 +19,10 @@ static navigationOptions = { header: null }
     super(props);
     this.state = {
       region: {
-        "latitude": 48.132,
-        "latitudeDelta": 0.022,
-        "longitude": 11.633,
-        "longitudeDelta": 0.033,
+        "latitude": 48.1284788,
+        "latitudeDelta": 0.0346563,
+        "longitude": 11.60298323,
+        "longitudeDelta": 0.0519225,
       },
     };
     YellowBox.ignoreWarnings(['Setting a timer']);
@@ -33,6 +33,7 @@ static navigationOptions = { header: null }
   }
 
   onRegionChange(region) {
+    //console.log(region);
     //this.setState({ region });
   }
 
@@ -45,14 +46,17 @@ static navigationOptions = { header: null }
             region={this.state.region}
             onRegionChange={this.onRegionChange}
             showsTraffic>
-            <Marker
-              coordinate={{
+            <Marker coordinate={{
                 "latitude": 48.1278,
                 "longitude": 11.6023
-                }}
-              title="Ostbanhof Custom Marker"
-              description="10 Waiting; 10% delay; smile :)"
-            />
+              }}>
+              <View>
+                <Callout onPress={()=>{navigate('Home')}}>
+                   <Text>Oh bella ciao</Text>
+                   <Text>Touch to go home</Text>
+                </Callout>
+              </View>
+            </Marker>
           </MapView>
         </View>
         <View style={styles.mapComplement}>
