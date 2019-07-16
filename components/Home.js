@@ -13,6 +13,9 @@ export default class Home extends Component {
     const navigate = this.props.navigation.navigate;
     return (
         <View style={styles.container}> 
+          <TouchableOpacity style ={styles.button} onPress={() => navigate('Intro')}>
+            <Text style={styles.buttonText}>Intro</Text>
+          </TouchableOpacity>
           <TouchableOpacity style ={styles.button} onPress={() => navigate('Welcome')}>
             <Text style={styles.buttonText}>Run GPS Test</Text>
           </TouchableOpacity> 

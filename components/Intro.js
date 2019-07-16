@@ -1,9 +1,11 @@
 import React,{ Component } from 'react';
-import { View, Text, Dimensions, StyleSheet, Button, TouchableWithoutFeedback } from 'react-native';
-import Image from 'react-native-scalable-image';
+import { Image, View, Text, Dimensions, StyleSheet, Button, TouchableWithoutFeedback } from 'react-native';
+//import Image from 'react-native-scalable-image';
 import {border, styles} from '../styles'
 import Carousel from './Carousel.js'
 //from: https://github.com/kkemple/react-native-sideswipe
+import image1 from '../assets/placeholder.jpg'
+import image2 from '../assets/placeholder2.jpg'
 export default class Intro extends Component {
 
   state = {
@@ -13,21 +15,17 @@ export default class Intro extends Component {
   render() {
     const navigate = this.props.navigation.navigate;
     const { width } = Dimensions.get('window');
-    const m = 30
-    const iw = width - m * 0
-    const co = (width - iw)/2
+    const m = 30 //margin
+    const iw = width - m * 0 //item width
+    const co = (width - iw)/2  //Content Offset
     const data = [
-      {text:'Lorem ipsum dolor sit amet, consadipiscing elit.',
+      {image:image1,
         bt:'Next',
         next:()=>this.setState({currentIndex : 1}),
         color:'#ccc' },
-      {text:'Nullam condimentum est eget diam rutrum sollicitudin.',
-        bt:'Next',
-        next:()=>this.setState({currentIndex : 2}),
-        color:'#ddd' },
-      {text:'Morbi sit amet erat in elit placerat vehicula.',
-        bt:'Go',
-        next:()=> navigate('Welcome'),
+      {image:image2,
+        bt:'Learn How',
+        next:()=> navigate('Home'),
         color:'#eee'} ]
     return (
       <Carousel
@@ -43,29 +41,22 @@ export default class Intro extends Component {
         }
         renderItem={({ itemIndex, currentIndex, item }) => (
          <View  
-            style={{backgroundColor: item.color,
-                    width: iw,
+            style={{width: iw,
                     padding: styles.border,
                     }}>
-          <Text
-            style={styles.title}>
-            Position: {itemIndex}
-          </Text>
-          <Text
-            style={styles.title}>
-            Value: {item.text}
-          </Text>
+          <Image style={{width: iw, height: iw}}
+          source={item.image} >
+          </Image>
           <View
             style = {{
               width: width,
               padding: 50
-            }}
-            >
+            }}>
             <Button
-            onPress={item.next}
-            title={item.bt}
-            color="#841584"
-          />
+              onPress={item.next}
+              title={item.bt}
+              color="#841584"
+            />
           </View>
           
         </View>
