@@ -5,6 +5,7 @@ import CircleSlider from './CircleSlider';
 import Nav from './Nav';
 import {border, styles} from '../styles'
 import { YellowBox } from 'react-native';
+import MapView from 'react-native-maps';
 const firebase = require('../firebase.js');
 const db = firebase.db;
 const files = firebase.files;
@@ -28,6 +29,7 @@ static navigationOptions = { header: null }
     const navigate = this.props.navigation.navigate;
     return (
       <View style={styles.container}>
+        <MapView style={{flex: 1}} />
         <Text style={styles.text}>The Spanish Inquisition, because nobody expects the spanish inquisition</Text>
         <TouchableOpacity style={styles.button} onPress={()=>{navigate('Home')}}>
           <Text style={styles.buttonText}>Go Home</Text>
