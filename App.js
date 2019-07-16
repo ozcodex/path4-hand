@@ -15,6 +15,12 @@ import ReportLine from './components/ReportLine'
 import ReportDirection from './components/ReportDirection'
 import ReportDelay from './components/ReportDelay'
 import Map from './components/Map'
+import Pick from './components/Pick'
+import Egg from './components/Egg'
+import Thanks from './components/Thanks'
+import Feedback from './components/Feedback'
+import BabyDragon from './components/BabyDragon'
+import ChooseName from './components/ChooseName'
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 const MainNavigator = createStackNavigator(
@@ -33,7 +39,13 @@ const MainNavigator = createStackNavigator(
     ReportLine: {screen: ReportLine},
     ReportDirection: {screen: ReportDirection},
     ReportDelay: {screen: ReportDelay},
+    Pick: {screen: Pick},
     Map: {screen: Map},
+    Egg: {screen: Egg},
+    Thanks: {screen: Thanks},
+    Feedback: {screen: Feedback},
+    BabyDragon: {screen: BabyDragon},
+    ChooseName: {screen: ChooseName},
   },
   {
     initialRouteName: "Home"

@@ -11,7 +11,7 @@ export default class Intro extends Component {
   state = {
     currentIndex: 0,
   };
-
+  static navigationOptions = { header: null }
   render() {
     const navigate = this.props.navigation.navigate;
     const { width } = Dimensions.get('window');
@@ -25,9 +25,10 @@ export default class Intro extends Component {
         color:'#ccc' },
       {image:image2,
         bt:'Learn How',
-        next:()=> navigate('Home'),
+        next:()=> navigate('Pick'),
         color:'#eee'} ]
     return (
+      <View style={styles.container}>
       <Carousel
         index={this.state.currentIndex}
         itemWidth={iw}
@@ -61,7 +62,8 @@ export default class Intro extends Component {
           
         </View>
         )}
-      />  
+      />
+      </View>
     );
   }
 }

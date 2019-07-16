@@ -26,11 +26,10 @@ static navigationOptions = { header: null }
       navigation.navigate('ReportStation')
     }
     let ranges= [
-      'No delay',          //0
-      '1 - 5 minutes',     //1
-      '6 - 10 minutes',    //2
-      '11 - 15 minutes',   //3
-      '16 or more minutes' //4
+      '1 - 5 minutes',     //0
+      '6 - 10 minutes',    //1
+      '11 - 15 minutes',   //2
+      '16 or more minutes' //3
     ]
     this.state = {
       line: line,
@@ -60,8 +59,8 @@ static navigationOptions = { header: null }
       console.log('data2save: ',data)
       let ref = db.collection('delays').doc();
       ref.set(data).then(()=> {
-        Alert.alert('Information stored successfully')
-        navigate('Home')
+        //Alert.alert('Information stored successfully')
+        navigate('Thanks')
       }).catch(error => Alert.alert('error saving the info :('))
     }
     return (

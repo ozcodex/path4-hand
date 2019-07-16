@@ -11,7 +11,7 @@ static navigationOptions = { header: null }
 
   constructor(props) {
     super(props);
-    this.state = { text: 'Ostbahnhof' };
+    this.state = { text: 'Ostbahnhof München' };
   }
 
   render() {

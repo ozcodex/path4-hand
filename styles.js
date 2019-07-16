@@ -63,6 +63,14 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: 'bold',
   },
+  eggButton:{
+    //flex:1,
+    flexDirection:'row',
+    width: Dimensions.get('window').width - border * 4,
+    padding: Math.ceil(border/3),
+    backgroundColor: '#841584',
+    margin: Math.ceil(border/4)
+  },
   button:{
     //flex:1,
     padding: Math.ceil(border/3),
