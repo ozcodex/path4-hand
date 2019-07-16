@@ -101,5 +101,31 @@ const styles = StyleSheet.create({
     //padding: 10,
     width: Dimensions.get('window').width - border * 4,
   },
+  mapContainer: {
+    position: 'absolute',
+    top: border,
+    left: border,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    width: Dimensions.get('window').width - border * 2,
+    height: Dimensions.get('window').width - border * 2,
+  },
+  mapComplement:{
+    position: 'absolute',
+    flex:1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    flexDirection:'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: Dimensions.get('window').width
+  },
+  map: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
 })
 
