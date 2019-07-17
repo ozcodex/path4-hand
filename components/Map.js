@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { View, Text, Dimensions, TouchableOpacity, Picker } from 'react-native';
+import { Alert, View, Text, Dimensions, TouchableOpacity, Picker } from 'react-native';
 import Image from 'react-native-scalable-image';
 import CircleSlider from './CircleSlider';
 import Nav from './Nav';
@@ -30,7 +30,24 @@ static navigationOptions = { header: null }
     //They are looking into solving this issue with their library
     // https://github.com/firebase/firebase-js-sdk/issues/97
     this.onRegionChange = this.onRegionChange.bind(this)
+    this.findCoordinates = this.findCoordinates.bind(this)
   }
+  
+  findCoordinates = () => {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        let region = {
+          longitude: position.coords.longitude - ( this.state.region.longitudeDelta / 2),
+          latitude: position.coords.latitude - ( this.state.region.latitudeDelta / 2),
+          longitudeDelta : this.state.region.longitudeDelta,
+          latitudeDelta: this.state.region.latitudeDelta
+        }
+        this.setState({ region });
+      },
+      error => Alert.alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  };
 
   onRegionChange(region) {
     //console.log(region);
@@ -63,6 +80,9 @@ static navigationOptions = { header: null }
           <Text style={styles.text}>The Spanish Inquisition, because nobody expects the spanish inquisition</Text>
           <TouchableOpacity style={styles.button} onPress={()=>{navigate('Home')}}>
             <Text style={styles.buttonText}>Go Home</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={this.findCoordinates}>
+            <Text style={styles.buttonText}>Center on me!</Text>
           </TouchableOpacity>
         </View>
       </View>
