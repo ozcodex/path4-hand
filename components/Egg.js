@@ -1,9 +1,9 @@
 import React,{ Component } from 'react';
 import { Image, View, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import {border, styles} from '../styles'
-import image1 from '../assets/placeholder.jpg'
-import image2 from '../assets/placeholder2.jpg'
-import image3 from '../assets/placeholder3.png'
+import image1 from '../assets/egg1.png'
+import image2 from '../assets/egg2.png'
+import image3 from '../assets/egg3.png'
 
 export default class Home extends Component {
 

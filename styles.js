@@ -68,18 +68,25 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     width: Dimensions.get('window').width - border * 4,
     padding: Math.ceil(border/3),
-    backgroundColor: '#841584',
+    borderRadius: 25,
+    backgroundColor: '#9B9AF8',
     margin: Math.ceil(border/4)
   },
   button:{
     //flex:1,
+    width: Dimensions.get('window').width - border * 4,
     padding: Math.ceil(border/3),
-    backgroundColor: '#841584',
-    margin: Math.ceil(border/4)
+    backgroundColor: '#9B9AF8',
+    margin: Math.ceil(border/4),
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttoff:{
     //flex:1,
+    width: Dimensions.get('window').width - border * 4,
     padding: Math.ceil(border/3),
+    borderRadius: 25,
     backgroundColor: '#848484',
     margin: Math.ceil(border/4)
   },
@@ -99,7 +106,8 @@ const styles = StyleSheet.create({
   },
   input : {
     height: 50,
-    padding: 10, 
+    padding: 10,
+    margin: 10, 
     width: Dimensions.get('window').width - border * 2,
     borderColor: 'gray',
     borderWidth: 1

@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { Image, View, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import {border, styles} from '../styles'
-import image from '../assets/placeholder.jpg'
+import image from '../assets/feedback.png'
 
 export default class Feedback extends Component {
 

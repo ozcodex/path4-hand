@@ -23,9 +23,9 @@ static navigationOptions = { header: null }
       //if there are no line redirect to the begining
       navigation.navigate('ReportStation')
     }else{
-      db.collection('lines').where('name', '==', line).get().then(
+      db.collection('lines').doc(line).get().then(
         snapshot => {
-          var directions = snapshot.docs[0].data().directions
+          var directions = Object.keys(snapshot.data().direction)
           this.setState({
             directions: directions,
             direction: directions[0]
