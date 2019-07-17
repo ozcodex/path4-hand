@@ -75,7 +75,7 @@ static navigationOptions = { header: null }
           } 
         }
         //to this point my_stations content all the info of the stations
-        console.log(my_stations)
+        //console.log(my_stations)
         this.setState({
           region: region,
           markers: my_stations
