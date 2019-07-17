@@ -17,13 +17,15 @@ static navigationOptions = { header: null }
 
   constructor(props) {
     super(props);
+    this.current_region = {
+      "latitude": 48.1284788,
+      "latitudeDelta": 0.0316563,
+      "longitude": 11.60298323,
+      "longitudeDelta": 0.0479225,
+    }
     this.state = {
-      region: {
-        "latitude": 48.1284788,
-        "latitudeDelta": 0.0346563,
-        "longitude": 11.60298323,
-        "longitudeDelta": 0.0519225,
-      },
+      region : this.current_region,
+      markers : []
     };
     YellowBox.ignoreWarnings(['Setting a timer']);
     //Ignoring it is not the best approach, but if you're using Firebase Realtime Database.
@@ -31,9 +33,59 @@ static navigationOptions = { header: null }
     // https://github.com/firebase/firebase-js-sdk/issues/97
     this.onRegionChange = this.onRegionChange.bind(this)
     this.findCoordinates = this.findCoordinates.bind(this)
+    this.loadStations = this.loadStations.bind(this)
+    this.loadStations();
+  }
+
+  loadStations(){
+    //this function load the stations on the current region
+    let region = this.current_region
+    let min_lon = region.longitude
+    let min_lat = region.latitude
+    let d_lon = region.longitudeDelta
+    let d_lat = region.latitudeDelta
+    //aux function to generate random numbers both inclusive
+    let ran = (min,max) => Math.floor(Math.random() * (max - min + 1) + min);
+    states=['low','medium','high']
+    db.collection('stations')
+      .where('longitude','>', min_lon - d_lon/2)
+      .where('longitude','<', min_lon + d_lon/2)
+      .get().then(
+      (snapshot) => {
+        let my_stations = []
+        stations = snapshot.docs
+        let i;
+        for(i = stations.length - 1; i >= 0; i--){
+          station = stations[i]
+          station_data = station.data()
+          lat = station_data.latitude
+          lon = station_data.longitude
+          if ( lat > min_lat - d_lat/2 && lat < min_lat + d_lat/2 ){
+            //this mean than the value is in the range
+            my_stations.push({
+              coordinates : {
+                longitude : lon,
+                latitude : lat
+                },
+              name : station_data.name,
+              prediction: [
+                states[ran(0,2)],states[ran(0,2)]
+              ]
+            })
+          } 
+        }
+        //to this point my_stations content all the info of the stations
+        console.log(my_stations)
+        this.setState({
+          region: region,
+          markers: my_stations
+        })
+      })
   }
   
   findCoordinates = () => {
+    //this function take the coordinates of the user and put it on the state
+    //so the map is redrawed bun tow centered on the user
     navigator.geolocation.getCurrentPosition(
       position => {
         let region = {
@@ -50,8 +102,7 @@ static navigationOptions = { header: null }
   };
 
   onRegionChange(region) {
-    //console.log(region);
-    //this.setState({ region });
+    this.current_region = region;
   }
 
   render() {
@@ -63,17 +114,15 @@ static navigationOptions = { header: null }
             region={this.state.region}
             onRegionChange={this.onRegionChange}
             showsTraffic>
-            <Marker coordinate={{
-                "latitude": 48.1278,
-                "longitude": 11.6023
-              }}>
-              <View>
-                <Callout onPress={()=>{navigate('Home')}}>
-                   <Text>Oh bella ciao</Text>
-                   <Text>Touch to go home</Text>
+            { this.state.markers.map((item, key)=>(
+              <Marker key={key} coordinate={item.coordinates}>
+                <Callout onPress={()=>{/*navigate('Home')*/}}>
+                   <Text style={styles.bold}>{item.name}</Text>
+                   <Text>Currently: {item.prediction[0]} delay risk</Text>
+                   <Text>Next Hour: {item.prediction[1]} delay risk</Text>
                 </Callout>
-              </View>
-            </Marker>
+              </Marker>
+            ))}
           </MapView>
         </View>
         <View style={styles.mapComplement}>
@@ -83,6 +132,9 @@ static navigationOptions = { header: null }
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={this.findCoordinates}>
             <Text style={styles.buttonText}>Center on me!</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={this.loadStations}>
+            <Text style={styles.buttonText}>Load Stations</Text>
           </TouchableOpacity>
         </View>
       </View>
