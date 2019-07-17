@@ -13,6 +13,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: border,
   },
+  chatContainer: {
+    flex:1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    flexDirection:'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: border,
+  },
   textBig: {
     fontSize: 20,
     textAlign: 'center',
@@ -42,8 +51,9 @@ const styles = StyleSheet.create({
   },
   central:{
   },
-  image: {
-   
+  bar: {
+    flexDirection:'row',   
+    justifyContent: 'space-between',
   },
   navContainer: {
     flex:0,
@@ -82,6 +92,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  sendButton:{
+    //flex:1,
+    width: border * 2,
+    padding: Math.ceil(border/3),
+    backgroundColor: '#9B9AF8',
+    margin: Math.ceil(border/4),
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   buttoff:{
     //flex:1,
     width: Dimensions.get('window').width - border * 4,
@@ -109,6 +129,14 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10, 
     width: Dimensions.get('window').width - border * 2,
+    borderColor: 'gray',
+    borderWidth: 1
+  },
+  chatInput : {
+    height: 50,
+    padding: 10,
+    margin: 10, 
+    width: Dimensions.get('window').width - border * 4,
     borderColor: 'gray',
     borderWidth: 1
   },

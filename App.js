@@ -21,6 +21,7 @@ import Thanks from './components/Thanks'
 import Feedback from './components/Feedback'
 import BabyDragon from './components/BabyDragon'
 import ChooseName from './components/ChooseName'
+import BroadChat from './components/BroadChat'
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 const MainNavigator = createStackNavigator(
@@ -46,6 +47,7 @@ const MainNavigator = createStackNavigator(
     Feedback: {screen: Feedback},
     BabyDragon: {screen: BabyDragon},
     ChooseName: {screen: ChooseName},
+    BroadChat: {screen: BroadChat},
   },
   {
     initialRouteName: "Home"

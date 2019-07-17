@@ -28,6 +28,9 @@ export default class Home extends Component {
           <TouchableOpacity style ={styles.button} onPress={() => navigate('Map')}>
             <Text style={styles.buttonText}>See the HeatMap</Text>
           </TouchableOpacity> 
+          <TouchableOpacity style ={styles.button} onPress={() => navigate('BroadChat')}>
+            <Text style={styles.buttonText}>Community Chat</Text>
+          </TouchableOpacity> 
         </View>
     );
   }
